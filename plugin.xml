@@ -65,7 +65,7 @@
             <string>This app would like to scan for iBeacons while it is in use.</string>
         </config-file>
         <config-file target="*-Info.plist" parent="NSBluetoothAlwaysUsageDescription">
-            <string>This app would like to scan for iBeacons.</string>
+            <string>This app would like to access Bluetooth to scan for iBeacons.</string>
         </config-file>
         <config-file target="*-Info.plist" parent="NSLocationAlwaysAndWhenInUseUsageDescription">
             <string>This app would like to scan for iBeacons both while in use and while in the background.</string>
@@ -93,12 +93,11 @@
         </config-file>
 
         <config-file target="AndroidManifest.xml" parent="/manifest">
-			<uses-permission android:name="android.permission.BLUETOOTH" />
-            <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-			<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-            <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-            <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-            <service android:permission="android.permission.BIND_JOB_SERVICE" android:name="org.altbeacon.beacon.service.ScanJob"> </service>
+			<uses-permission android:name="android.permission.BLUETOOTH" android:required="false" />
+            <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" android:required="false"/>
+			<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:required="false"/>
+            <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" android:required="false"/>
+            <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" android:required="true" />
         </config-file>
 
         <config-file target="AndroidManifest.xml" parent="/manifest/application">
@@ -124,7 +123,12 @@
                     <action android:name="com.unarin.cordova.beacon.IBeaconPlugin.DID_MONITORING" />
                 </intent-filter>
             </service>
-            
+            <service android:enabled="true" 
+            android:exported="false" 
+            android:isolatedProcess="false" 
+            android:label="beacon" 
+            android:permission="android.permission.BIND_JOB_SERVICE" 
+            android:name="org.altbeacon.beacon.service.ScanJob" />
         </config-file>
 
         <source-file src="src/android/LocationManager.java" target-dir="src/com/unarin/cordova/beacon" />
