@@ -93,10 +93,10 @@
         </config-file>
 
         <config-file target="AndroidManifest.xml" parent="/manifest">
-			<uses-permission android:name="android.permission.BLUETOOTH" android:required="false" />
-            <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" android:required="false"/>
-			<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:required="false"/>
-            <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" android:required="false"/>
+			<uses-permission android:name="android.permission.BLUETOOTH" android:required="true" />
+            <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" android:required="true"/>
+			<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:required="true"/>
+            <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" android:required="true"/>
             <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" android:required="true" />
         </config-file>
 
